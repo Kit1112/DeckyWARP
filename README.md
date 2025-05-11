@@ -7,7 +7,7 @@ Thanks [this](https://www.reddit.com/r/SteamDeck/comments/1j9du2f/definitive_gui
 
 
 ## RU
-## Автоматическая установка Cloudflare WARP и управление им из меню плагинов. Использование WARP в Steam deck никогда не было таким простым!
+## Автоматическая установка Cloudflare WARP и управление им из меню плагинов. Использование WARP на Steam deck никогда не было таким простым!
 
 Этот плагин был написан с большой помощью от ChatGPT.
 Спасибо [этому](https://www.reddit.com/r/SteamDeck/comments/1j9du2f/definitive_guide_to_get_cloudflare_warp_on_your/?tl=fil) руководству по установке.
