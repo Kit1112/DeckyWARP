@@ -24,6 +24,7 @@ For self-assembly and/or fork, you can clone this repository and then run the co
 Для самостоятельной сборки и/или форка можете клонировать этот репозиторий и после выполнить в папке вашего клона команды ```pnpm i``` & ```pnpm build```
 
 
+# Screenshots/Скриншоты
 ![screenshot](https://i.ibb.co/zWK6Rz1M/IMG-20250511-195144-720.jpg)
 
 
