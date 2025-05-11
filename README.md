@@ -6,6 +6,7 @@ Auto-installing of Cloudflare WARP and its management from the plugins menu. Usi
 
 This plugin was writed with a lot of help from ChatGPT. 
 Thanks [this](https://www.reddit.com/r/SteamDeck/comments/1j9du2f/definitive_guide_to_get_cloudflare_warp_on_your/?tl=fil) guide for a way to installing.
+Based on [DeckMTP](https://github.com/dafta/DeckMTP).
 
 ## Cloning/modification
 The plugin is distributed under the most open conditions. You can clone/modify the code and distribute it without attribution.
@@ -18,6 +19,7 @@ For self-assembly and/or fork, you can clone this repository and then run the co
 
 Этот плагин был написан с большой помощью от ChatGPT.
 Спасибо [этому](https://www.reddit.com/r/SteamDeck/comments/1j9du2f/definitive_guide_to_get_cloudflare_warp_on_your/?tl=fil) руководству за способ установки.
+Написано на основе [DeckMTP](https://github.com/dafta/DeckMTP).
 
 ## Клонирование/изменение
 Плагин распространяется на максимально открытых условиях. Можете клонировать/изменять код и распространять его без указания авторства.
