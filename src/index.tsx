@@ -7,10 +7,13 @@ import {
   staticClasses,
   DialogButton,
   Focusable,
+  Navigation,
+  ServerAPI,
 } from "decky-frontend-lib";
 import { FaCloud } from "react-icons/fa";
 import { BsGearFill } from "react-icons/bs";
 import { Fragment, useEffect, useState } from "react";
+import SettingsPageRouter from "./pages/settings/SettingsPageRouter";
 
 let api: ServerAPI;
 
@@ -106,6 +109,11 @@ const Content = () => {
 };
 
 const TitleView = () => {
+  const openSettings = () => {
+    Navigation.CloseSideMenus();
+    Navigation.Navigate("/deckywarp/settings");
+  };
+
   return (
     <Focusable
       style={{
@@ -121,6 +129,7 @@ const TitleView = () => {
       <div style={{ marginLeft: 8 }}>DeckyWARP</div>
       <DialogButton
         style={{ height: "28px", width: "40px", minWidth: 0, padding: "10px 12px" }}
+        onClick={openSettings}
       >
         <BsGearFill style={{ marginTop: "-4px", display: "block" }} />
       </DialogButton>
@@ -130,6 +139,7 @@ const TitleView = () => {
 
 export default definePlugin((serverAPI: ServerAPI) => {
   setServerAPI(serverAPI);
+  serverAPI.routerHook.addRoute("/deckywarp/settings", () => <SettingsPageRouter />);
   return {
     titleView: <TitleView />,
     content: <Content />,
