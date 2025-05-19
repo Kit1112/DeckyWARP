@@ -137,6 +137,8 @@ const TitleView = () => {
   );
 };
 
+(window as any).call = call;
+
 export default definePlugin((serverAPI: ServerAPI) => {
   setServerAPI(serverAPI);
   serverAPI.routerHook.addRoute("/deckywarp/settings", () => <SettingsPageRouter />);

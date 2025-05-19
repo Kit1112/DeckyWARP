@@ -1,21 +1,27 @@
 import { PanelSection, ToggleField, PanelSectionRow } from "decky-frontend-lib";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 
 const PluginSettings = () => {
-  const [optionOne, setOptionOne] = useState(false);
-  const [optionTwo, setOptionTwo] = useState(false);
+  const [debugMode, setDebugMode] = useState(false);
+
+  useEffect(() => {
+    const stored = localStorage.getItem("debug_mode");
+    if (stored !== null) {
+      setDebugMode(stored === "true");
+    }
+  }, []);
+
+  const handleDebugToggle = (value: boolean) => {
+    setDebugMode(value);
+    localStorage.setItem("debug_mode", value.toString());
+  };
 
   return (
     <PanelSection>
       <ToggleField
-        label="Опция 1 (заглушка)"
-        checked={optionOne}
-        onChange={setOptionOne}
-      />
-      <ToggleField
-        label="Опция 2 (заглушка)"
-        checked={optionTwo}
-        onChange={setOptionTwo}
+        label="Режим отладки"
+        checked={debugMode}
+        onChange={handleDebugToggle}
       />
       <PanelSectionRow />
     </PanelSection>
