@@ -1,5 +1,6 @@
 // src/components/CustomButtonItem.tsx
 import React from "react";
+import { Focusable } from "decky-frontend-lib";
 
 export const CustomButtonItem = ({
   onClick,
@@ -10,14 +11,14 @@ export const CustomButtonItem = ({
   children: React.ReactNode;
   disabled?: boolean;
 }) => {
-  const baseStyle = {
+  const baseStyle: React.CSSProperties = {
     backgroundColor: disabled ? "rgb(30, 34, 36)" : "rgb(43, 51, 55)",
     color: disabled ? "rgba(255, 255, 255, 0.4)" : "white",
     fontSize: "16px",
     fontWeight: "normal",
     padding: "10px 28px",
     cursor: disabled ? "default" : "pointer",
-    userSelect: "none" as const,
+    userSelect: "none",
     borderRadius: "2px",
     display: "inline-block",
     lineHeight: 1.25,
@@ -51,15 +52,19 @@ export const CustomButtonItem = ({
   };
 
   return (
-    <div
-      onClick={!disabled ? onClick : undefined}
-      onMouseEnter={handleMouseEnter}
-      onMouseLeave={handleMouseLeave}
-      onMouseDown={handleMouseDown}
-      onMouseUp={handleMouseUp}
-      style={baseStyle}
+    <Focusable
+      onActivate={!disabled ? onClick : undefined}
     >
-      {children}
-    </div>
+      <div
+        onClick={!disabled ? onClick : undefined}
+        onMouseEnter={handleMouseEnter}
+        onMouseLeave={handleMouseLeave}
+        onMouseDown={handleMouseDown}
+        onMouseUp={handleMouseUp}
+        style={baseStyle}
+      >
+        {children}
+      </div>
+    </Focusable>
   );
 };

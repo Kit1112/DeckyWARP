@@ -1,4 +1,4 @@
-import asyncio, subprocess, time, pathlib, decky_plugin
+import asyncio, subprocess, time, pathlib, decky_plugin, os
 
 def log_to_file(msg: str):
     try:
@@ -200,6 +200,23 @@ class Plugin:
                    "--quiet", path)
         return "update_started"
 
+    async def get_update_log(self):
+        try:
+            path = pathlib.Path("/tmp/deckywarp_update.log")
+            if path.exists():
+                return path.read_text()[-8000:]  # последние 8Кб
+        except Exception as e:
+            return f"[get_update_log ERROR] {e}"
+        return ""
+
+    async def clear_logs(self):
+        try:
+            for f in ["/tmp/deckywarp.log", "/tmp/deckywarp_update.log", "/tmp/warp_install.log"]:
+                pathlib.Path(f).unlink(missing_ok=True)
+            return "ok"
+        except Exception as e:
+            return f"error: {e}"
+
     async def check_update(self):
         import json, traceback, pathlib
         from decky_plugin import logger
@@ -225,7 +242,6 @@ curl -sL -H '' -H 'Accept: application/vnd.github+json' {GITHUB_API_URL} > /tmp/
                 tag = data.get("tag_name", "").lstrip("v")
                 body = data.get("body", "")
 
-                # вытаскиваем changelog EN + RU
                 lines = body.splitlines()
                 en, ru, p = [], [], 0
                 for line in lines:

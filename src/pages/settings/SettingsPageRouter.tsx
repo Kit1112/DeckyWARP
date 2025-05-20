@@ -16,7 +16,7 @@ const SettingsPageRouter = ({ serverAPI }: Props) => (
         title: "Настройки",
         icon: <BsGearFill />,
         route: "/deckywarp/settings/general",
-        content: <PluginSettings />,
+        content: <PluginSettings serverAPI={serverAPI} />, // 💥 если нужно
       },
       {
         title: "Обновление",
@@ -28,7 +28,7 @@ const SettingsPageRouter = ({ serverAPI }: Props) => (
         title: "Благодарности",
         icon: <FaHeart />,
         route: "/deckywarp/settings/credits",
-        content: <Credits />,
+        content: <Credits serverAPI={serverAPI} />, // 💥 если нужно
       },
     ]}
   />

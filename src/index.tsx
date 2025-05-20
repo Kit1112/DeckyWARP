@@ -141,7 +141,12 @@ const TitleView = () => {
 
 export default definePlugin((serverAPI: ServerAPI) => {
   setServerAPI(serverAPI);
-  serverAPI.routerHook.addRoute("/deckywarp/settings", () => <SettingsPageRouter />);
+
+  // 💥 Передаём serverAPI в роутер настроек
+  serverAPI.routerHook.addRoute("/deckywarp/settings", () => (
+    <SettingsPageRouter serverAPI={serverAPI} />
+  ));
+
   return {
     titleView: <TitleView />,
     content: <Content />,
