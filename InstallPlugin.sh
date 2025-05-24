@@ -1,5 +1,6 @@
 #!/bin/bash
 # Удалили set -e — скрипт не будет завершаться при ошибках
+set +e
 
 echo "== Stopping DeckyWARP and related services =="
 
