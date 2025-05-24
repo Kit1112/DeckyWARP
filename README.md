@@ -24,7 +24,7 @@ For self-assembly and/or fork, you can clone this repository and then run the co
 
 Этот плагин был написан с большой помощью от ChatGPT.
 ## Благодарности
-- [Этот гайд](https://www.reddit.com/r/SteamDeck/s/6iyB8zdGP4) — в целом за способ установки WARP
+- [Этому гайд](https://www.reddit.com/r/SteamDeck/s/6iyB8zdGP4) — в целом за способ установки WARP
 - [DeckMTP](https://github.com/dafta/DeckMTP) — за основу фронтенда, скрипт для сборки  
 - [CSSLoader](https://github.com/DeckThemes/SDH-CssLoader) — реализация кнопки в заголовке, реализация страницы настроек  
 - [Emuchievements](https://github.com/EmuDeck/Emuchievements) — реализация уведомлений
