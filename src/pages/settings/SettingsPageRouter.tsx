@@ -9,26 +9,37 @@ interface Props {
   serverAPI: ServerAPI;
 }
 
+const ru = navigator.language?.toLowerCase().startsWith("ru");
+
+const t = (key: string): string => {
+  const dict: Record<string, string> = {
+    general: ru ? "Настройки" : "Settings",
+    updates: ru ? "Обновление" : "Updates",
+    credits: ru ? "Благодарности" : "Credits",
+  };
+  return dict[key] || key;
+};
+
 const SettingsPageRouter = ({ serverAPI }: Props) => (
   <SidebarNavigation
     pages={[
       {
-        title: "Настройки",
+        title: t("general"),
         icon: <BsGearFill />,
         route: "/deckywarp/settings/general",
-        content: <PluginSettings serverAPI={serverAPI} />, // 💥 если нужно
+        content: <PluginSettings serverAPI={serverAPI} />,
       },
       {
-        title: "Обновление",
+        title: t("updates"),
         icon: <FaDownload />,
         route: "/deckywarp/settings/updates",
         content: <Updates serverAPI={serverAPI} />,
       },
       {
-        title: "Благодарности",
+        title: t("credits"),
         icon: <FaHeart />,
         route: "/deckywarp/settings/credits",
-        content: <Credits serverAPI={serverAPI} />, // 💥 если нужно
+        content: <Credits serverAPI={serverAPI} />,
       },
     ]}
   />
