@@ -13,6 +13,7 @@ import {
 import { FaCloud } from "react-icons/fa";
 import { BsGearFill } from "react-icons/bs";
 import { Fragment, useEffect, useState } from "react";
+import ReactDOMServer from "react-dom/server";
 import SettingsPageRouter from "./pages/settings/SettingsPageRouter";
 
 let api: ServerAPI;
@@ -50,6 +51,38 @@ const txt = (ru: boolean, s: string): string => {
 };
 
 const Content = () => {
+  useEffect(() => {
+    const observer = new MutationObserver(() => {
+      const topBar = document.querySelector('[class*="TopBar"], [class*="topBar"]');
+      if (!topBar || topBar.querySelector(".deckywarp-top-icon")) return;
+
+      const icon = document.createElement("div");
+      icon.className = "deckywarp-top-icon";
+      icon.style.width = "24px";
+      icon.style.height = "24px";
+      icon.style.display = "flex";
+      icon.style.alignItems = "center";
+      icon.style.justifyContent = "center";
+      icon.style.marginLeft = "6px";
+      icon.style.color = "white";
+
+      const svg = document.createElementNS("http://www.w3.org/2000/svg", "svg");
+      svg.setAttribute("fill", "currentColor");
+      svg.setAttribute("viewBox", "0 0 640 512");
+      svg.setAttribute("height", "18");
+      svg.setAttribute("width", "18");
+      svg.innerHTML = '<path d="M537.6 226.6c-28.7-82.4-111-138.6-200.3-138.6-63.6 0-122.8 29.5-161.2 79.4-72.6 6.3-128.1 67.1-128.1 141.3 0 79.5 64.5 144 144 144H496c70.7 0 128-57.3 128-128 0-63.3-45.9-116-104.4-129.1z"/>';
+      icon.appendChild(svg);
+
+      topBar.appendChild(icon);
+      console.log("[DeckyWARP] FaCloud icon appended (fallback mode)");
+      observer.disconnect();
+    });
+
+    observer.observe(document.body, { childList: true, subtree: true });
+    return () => observer.disconnect();
+  }, []);
+
   const [st, setSt] = useState<string>("error");
   const [log, setLog] = useState<string>("");
 
@@ -142,7 +175,6 @@ const TitleView = () => {
 export default definePlugin((serverAPI: ServerAPI) => {
   setServerAPI(serverAPI);
 
-  // 💥 Передаём serverAPI в роутер настроек
   serverAPI.routerHook.addRoute("/deckywarp/settings", () => (
     <SettingsPageRouter serverAPI={serverAPI} />
   ));

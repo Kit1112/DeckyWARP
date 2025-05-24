@@ -6,6 +6,8 @@ import {
 import { useState, useEffect } from "react";
 import { CustomButtonItem } from "../../components/CustomButtonItem";
 
+const ru = navigator.language?.toLowerCase().startsWith("ru");
+
 const PluginSettings = () => {
   const [debugMode, setDebugMode] = useState(false);
   const [isClearing, setIsClearing] = useState(false);
@@ -17,12 +19,32 @@ const PluginSettings = () => {
     "/tmp/warp_install.log"
   ];
 
-  const storageKeys: { key: string; comment: string }[] = [
-    { key: "update_status", comment: "статус последней проверки" },
-    { key: "update_latest", comment: "доступная версия" },
-    { key: "update_changelog", comment: "текст изменений" },
-    { key: "update_in_progress", comment: "флаг, что идёт обновление" },
-    { key: "update_ignored_version", comment: "версия, которую нужно игнорировать" }
+  const storageKeys: { key: string; commentRu: string; commentEn: string }[] = [
+    {
+      key: "update_status",
+      commentRu: "статус последней проверки",
+      commentEn: "last update check status"
+    },
+    {
+      key: "update_latest",
+      commentRu: "доступная версия",
+      commentEn: "available version"
+    },
+    {
+      key: "update_changelog",
+      commentRu: "текст изменений",
+      commentEn: "changelog text"
+    },
+    {
+      key: "update_in_progress",
+      commentRu: "флаг, что идёт обновление",
+      commentEn: "flag indicating update is in progress"
+    },
+    {
+      key: "update_ignored_version",
+      commentRu: "версия, которую нужно игнорировать",
+      commentEn: "version to ignore"
+    }
   ];
 
   useEffect(() => {
@@ -42,9 +64,9 @@ const PluginSettings = () => {
     setClearMessage(null);
     try {
       await (window as any).call("clear_logs", {});
-      setClearMessage("✅ Логи очищены");
+      setClearMessage(ru ? "✅ Логи очищены" : "✅ Logs cleared");
     } catch (e) {
-      setClearMessage("❌ Ошибка при очистке логов");
+      setClearMessage(ru ? "❌ Ошибка при очистке логов" : "❌ Error while clearing logs");
     } finally {
       setIsClearing(false);
     }
@@ -57,7 +79,7 @@ const PluginSettings = () => {
   return (
     <PanelSection>
       <ToggleField
-        label="Режим отладки"
+        label={ru ? "Режим отладки" : "Debug mode"}
         checked={debugMode}
         onChange={handleDebugToggle}
       />
@@ -65,7 +87,9 @@ const PluginSettings = () => {
       {debugMode && (
         <>
           <PanelSectionRow>
-            <div style={{ fontWeight: "bold", marginBottom: "4px" }}>Логи</div>
+            <div style={{ fontWeight: "bold", marginBottom: "4px" }}>
+              {ru ? "Логи" : "Logs"}
+            </div>
           </PanelSectionRow>
 
           <PanelSectionRow>
@@ -74,7 +98,9 @@ const PluginSettings = () => {
                 onClick={handleClearLogs}
                 disabled={isClearing}
               >
-                {isClearing ? "Очищаем..." : "Очистить логи"}
+                {isClearing
+                  ? ru ? "Очищаем..." : "Clearing..."
+                  : ru ? "Очистить логи" : "Clear logs"}
               </CustomButtonItem>
               {clearMessage && (
                 <div style={{
@@ -91,7 +117,7 @@ const PluginSettings = () => {
 
           <PanelSectionRow>
             <div style={{ color: "#aaa", fontSize: "13px", padding: "4px 0" }}>
-              Логи находятся по пути:<br />
+              {ru ? "Логи находятся по пути:" : "Log file locations:"}<br />
               {logPaths.map(p => (
                 <div key={p}>{p}</div>
               ))}
@@ -100,15 +126,15 @@ const PluginSettings = () => {
 
           <PanelSectionRow>
             <div style={{ fontWeight: "bold", marginTop: "8px" }}>
-              Удалить ключи в LocalStorage
+              {ru ? "Удалить ключи в LocalStorage" : "Delete LocalStorage keys"}
             </div>
           </PanelSectionRow>
 
-          {storageKeys.map(({ key, comment }) => (
+          {storageKeys.map(({ key, commentRu, commentEn }) => (
             <PanelSectionRow key={key}>
               <div style={{ display: "flex", alignItems: "center", width: "100%" }}>
                 <CustomButtonItem onClick={() => handleClearKey(key)}>
-                  Удалить ключ {key}
+                  {ru ? `Удалить ключ ${key}` : `Delete key ${key}`}
                 </CustomButtonItem>
                 <div style={{
                   marginLeft: "auto",
@@ -116,7 +142,7 @@ const PluginSettings = () => {
                   fontSize: "13px",
                   whiteSpace: "nowrap"
                 }}>
-                  {comment}
+                  {ru ? commentRu : commentEn}
                 </div>
               </div>
             </PanelSectionRow>
