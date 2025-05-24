@@ -44,8 +44,8 @@ PLUGIN_DIR="/home/deck/homebrew/plugins/DeckyWARP"
 TMP_DIR="/tmp/deckywarp_install"
 ZIP_URL="https://api.github.com/repos/Kit1112/DeckyWARP/releases/latest"
 
-sudo mkdir -p "$TMP_DIR"
-sudo cd "$TMP_DIR" || exit 1
+mkdir -p "$TMP_DIR"
+cd "$TMP_DIR" || exit 1
 
 sudo echo "== Fetching latest release =="
 ASSET_URL=$(sudo curl -s "$ZIP_URL" | sudo grep '"zipball_url":' | sudo cut -d '"' -f 4)
