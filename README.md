@@ -38,6 +38,11 @@ For self-assembly and/or fork, you can clone this repository and then run the co
 ㅤ
 
 # Screenshots/Скриншоты
-![screenshot](https://i.ibb.co/zWK6Rz1M/IMG-20250511-195144-720.jpg)
+![screenshot](https://i.ibb.co/svjVq2Jz/IMG-20250524-161456-971.jpg)
+![screenshot](https://i.ibb.co/Vk2wrrR/IMG-20250524-161611-262.jpg)
+![screenshot](https://i.ibb.co/20YZLXvJ/IMG-20250524-161626-108.jpg)
+![screenshot](https://i.ibb.co/przVbcGn/IMG-20250524-161706-642.jpg)
+![screenshot](https://i.ibb.co/0yVK9cKf/IMG-20250524-161641-259.jpg)
+![screenshot](https://i.ibb.co/GQTGKM8y/IMG-20250524-161654-538.jpg)
 
 
